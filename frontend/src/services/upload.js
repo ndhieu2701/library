@@ -8,13 +8,13 @@ import {
 import { v4 as uuidV4 } from "uuid";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCOJ9tBsAUohQG2bToxl92jvYDpLsEz1fw",
-  authDomain: "library-a7da7.firebaseapp.com",
-  projectId: "library-a7da7",
-  storageBucket: "library-a7da7.appspot.com",
-  messagingSenderId: "545688549958",
-  appId: "1:545688549958:web:ec177e4d536882e281e847",
-  measurementId: "G-10SMRC0871",
+  apiKey: import.meta.env.REACT_APP_APIKEY,
+  authDomain: import.meta.env.REACT_APP_AUTHDOMAIN,
+  projectId: import.meta.env.REACT_APP_PROJECTID,
+  storageBucket: import.meta.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.REACT_APP_MESSAGINGSENDERID,
+  appId: import.meta.env.REACT_APP_APPID,
+  measurementId: import.meta.env.REACT_APP_MEASUREMENTID,
 };
 
 const app = initializeApp(firebaseConfig);
@@ -26,10 +26,7 @@ const handleUpload = async (image) => {
     contentType: "image/jpeg",
   };
   const fileExtension = image.name.split(".").pop();
-  const storageRef = ref(
-    storage,
-    "images/" + `${uuid}.${fileExtension}`
-  );
+  const storageRef = ref(storage, "images/" + `${uuid}.${fileExtension}`);
 
   const uploadTask = await uploadBytesResumable(storageRef, image, metadata);
   const urlImage = await getDownloadURL(uploadTask.ref);
