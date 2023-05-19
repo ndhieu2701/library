@@ -1,0 +1,2 @@
+1. in BookType.js uncomment BookType.insertMany to insert bookType
+2. go to Book.js, uncomment Book.insertMany and change bookType of each book to bookType _id in database, then save file to insert book to database
