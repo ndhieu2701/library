@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMessage } from "../../store/messageSlice";
 import { addBook, getBookTypes, updateBook } from "../../services/bookService";
 import dayjs from "dayjs";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { addNewbook, updatedBook } from "../../store/bookSlice";
 
 const BookDetailsForm = ({
@@ -48,6 +48,7 @@ const BookDetailsForm = ({
   const [newImage, setNewImage] = useState(isAddBook ? null : image);
   const [demoImage, setDemoImage] = useState(isAddBook ? null : image);
 
+  const navigate = useNavigate();
   const handleImageChange = (event) => {
     const selectedImage = event.target.files[0];
     setNewImage(selectedImage);
@@ -101,6 +102,7 @@ const BookDetailsForm = ({
       dispatch(
         setMessage({ status: res.status, message: "Update book success" })
       );
+      navigate("/");
     }
     if (res.status === "error") {
       dispatch(setMessage({ status: res.status, message: res.payload }));
@@ -132,6 +134,7 @@ const BookDetailsForm = ({
       dispatch(
         setMessage({ status: res.status, message: "Add new book success" })
       );
+      navigate("/");
     }
     if (res.status === "error") {
       dispatch(setMessage({ status: res.status, message: res.payload }));
@@ -305,7 +308,8 @@ const BookDetailsForm = ({
                 height: "100%",
                 background: `url(${demoImage})`,
                 backgroundPosition: "center",
-                backgroundSize: "contain",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
                 border: "2px dashed #ccc",
                 borderRadius: "10px",
                 display: "flex",

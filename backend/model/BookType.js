@@ -14,7 +14,7 @@ const BookType = mongoose.model("BookType", bookTypeSchema);
 export default BookType;
 
 // BookType.insertMany([
-//  { value: "" },
+//  { value: "None" },
 //   { value: "Classics" },
 //   { value: "Science" },
 //   { value: "Self-Help" },
